@@ -1,0 +1,66 @@
+<%- include(partialPaths.header) %>
+    <main class="connection-page-content">
+        <nav class="navbar navbar-expand">
+            <div class="container-fluid">
+
+                <h2>
+                    <%= connection.name %>
+                </h2>
+                <form>
+                    <% if(isAuthor) { %>
+                    <button type="subit" formmethod="GET" formaction="/connections/<%= connection.id %>/edit">Update</button>
+                    <button type="submit" formmethod="POST" formaction="/connections/<%= connection.id %>/delete?_method=DELETE">Delete</button>
+                    <% } %>
+
+                </form>
+                
+                <% if((user && !isAuthor) || !user) { %>
+                    <span>
+                      <% if(rsvp) { %>
+                      <caption><%= rsvp %> people are going</caption>
+                      <% } %>
+                      <p class="lead">going to this event? RSVP now !</p>
+                      <form method="POST" action="/connections/<%= connection.id%>/rsvp">
+                        <button type="submit" class="btn btn-success" name="rsvp" value="YES">Yes</button>
+                        <button type="submit" class="btn btn-danger" name="rsvp" value="NO">No</button>
+                        <button type="submit" class="btn btn-primary" name="rsvp" value="MAYBE">Maybe</button>
+                      </form>
+                    </span>
+                    <% } %>
+            </div>
+
+        </nav>
+
+
+        <div class="container-fluid">
+            <h3><%= connection.title %></h3>
+            <div class="row">
+                <div class="col-4">
+                    <img src="<%= connection.image %>" width="100%" height="150px" />
+                </div>
+              
+                <div class="col-6">
+                    <h4>Hosted by <%=  connection.hostName.lastName + ", " + connection.hostName.firstName %>
+                    </h4>
+                    <p><%= connection.location %></p>
+                    <br>
+                    <p>
+                        <%= connection.date %>
+                    </p>
+                    <p>
+                        <%= connection.startTime %>to <%= connection.endTime %>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <h4>Details</h4>
+            <p>
+                <%= connection.details %>
+            </p>
+            <p>Join in on the fun!!!</p>
+        </div>
+    </main>
+   
+    <%- include(partialPaths.footer) %>

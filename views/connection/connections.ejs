@@ -1,0 +1,38 @@
+<%- include(partialPaths.header) %>
+<main class="connections-page-content">
+    <section class="category-1">
+        <div class="container-fluid">
+            <div class="row">
+               
+          
+               
+                <div class="col-4">
+                    <% for(const topic of topics) { %>
+                    <h2><%= topic %></h2>
+                    <nav>
+                        <% for( const connection of connections) { %>
+                        <ul>
+                                <% if(connection.topic === topic) { %>
+                                <li>
+                                    <a href="/connections/<%= connection.id %>"><%= connection.title %></a>
+                                </li>
+                                <% } %>
+                            
+                            
+                        </ul>
+                        <% } %>
+                    </nav>
+
+                    <% } if(connections.length <=0) { %>
+                        <p> No connections to show</p>
+                        <% }%>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+<br>
+
+    
+</main>
+<%- include(partialPaths.footer) %>

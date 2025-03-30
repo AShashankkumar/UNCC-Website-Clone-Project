@@ -1,0 +1,44 @@
+<%- include(partialPaths.header) %>
+<main class="second-page-content">
+    <h1>Edit Connection(Event)</h1>
+    <br>
+    <form method="POST" action="/connections/<%=connection.id%>?_method=PUT">
+        <div class="form-group">
+            <label for="title">Name</label>
+            <input type="text" name="title" id="title" placeholder="Enter the title of event" value="<%= connection.title %>" required>
+        </div>
+        <div class="form-group">
+            <label for="topic">Topic</label>
+            <input type="text" name="topic" id="topic" placeholder="Enter the topic of event" value="<%= connection.topic %>" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="details">Details</label>
+            <input type="text" id="details" name="details" placeholder="Enter the details of the event" value="<%= connection.details %>" required minlength="10">
+        </div>
+        <div class="form-group">
+            <label for="location">Where</label>
+            <input type="text" id="location" name="location" placeholder="Enter the location of event" value="<%= connection.location %>" required>
+        </div>
+        <div class="form-group">
+            <label for="date">When</label>
+            <input type="date" id="date"  value="<%= connection.date %>" name="date" required>
+        </div>
+        <div class="form-group">
+            <label for="time_start">Start</label>
+            <input type="time" id="time_start" name="startTime" value="<%= connection.startTime %>" required>
+        </div>
+        <div class="form-group">
+            <label for="time_end">End</label>
+            <input type="time" id="time_end" name="endTime" value="<%= connection.endTime %>" required>
+        </div>
+        <div class="form-group">
+            <label for="upload">Image</label>
+            <input type="text" id="upload" name="image" value="<%= connection.image %>" required>
+        </div>
+    <br>
+        <button type="submit" class="btn btn-primary">Edit Connection</a>
+    </form>
+
+</main>
+<%- include(partialPaths.footer) %>

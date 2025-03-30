@@ -1,0 +1,72 @@
+<%- include(partialPaths.header) %>
+<main class="container content-container connections-page-content" >
+    <h4><%= user.firstName %>'s Connections</h4>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Connection</th>
+            <th scope="col">Category</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% if(connections.length === 0) { %>
+                <tr>
+                  <td colspan="3">No connections found</td>
+                </tr>
+              <% } %>
+
+              <% connections.forEach((connection) => { %>
+                
+
+          <tr>
+            <td><%= connection.title %></td>
+            <td><%= connection.topic %></td>
+            <td>
+                <form>
+                    <button type="subit" formmethod="GET" formaction="/connections/<%= connection.id %>/edit">Update</button>
+                    <button type="submit" formmethod="POST" formaction="/connections/<%= connection.id %>/delete?_method=DELETE">Delete</button>
+                </form>
+            </td>
+          </tr>
+
+          
+          <% }); %>
+        </tbody>
+      </table>
+
+      <h4><%= user.firstName %>'s Rsvp</h4>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Connection</th>
+            <th scope="col">Category</th>
+            <th scope="col">Going ?</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% if(rsvps.length === 0) { %>
+                <tr>
+                  <td colspan="3">No rsvps found</td>
+                </tr>
+              <% } %>
+
+              <% rsvps.forEach((rsvp) => { %>
+                
+
+          <tr>
+            <td><%= rsvp.connection.title %></td>
+            <td><%= rsvp.connection.topic %></td>
+            <td>
+                <%= rsvp.rsvp %>
+            </td>
+          </tr>
+
+          
+          <% }); %>
+        </tbody>
+      </table>
+</main>
+<%- include(partialPaths.footer) %>

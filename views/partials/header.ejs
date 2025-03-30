@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+</head>
+
+<body>
+    <header class="first">
+        <nav class="navbar navbar-expand">
+            <div class="container-fluid">
+                <a href="/" class="navbar-brand"><img src="/images/UNCC logo.jpg" alt="logo" id="logo"></a>
+
+                <ul class="navbar-nav">
+
+                    <% if(user) { %>
+                    <li class="nav-item">
+                        <a href="/connections/newConnection" class="nav-link">Start a New Connection</a>
+                    </li>
+                    <% } %>
+
+                    <% if(!user) { %>
+                    <li class="nav-item">
+                        <a href="/users/login" class="nav-link" id="b1">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/users/new" class="nav-link" id="b2">Sign Up</a>
+                    </li>
+                    <% } %>
+
+                    <% if(user) { %>
+                    <li class="nav-item">
+                        <a href="/users/profile" class="nav-link" id="b2">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/users/logout" class="nav-link" id="b2">Logout</a>
+                    </li>
+                    <% } %>
+                </ul>
+            </div>
+
+        </nav>
+    </header>
+
+    <header class="second">
+        <nav class="navbar navbar-expand">
+            <div class="container-fluid">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/connections/connections" class="nav-link">Connections</a>
+                    </li>
+                </ul>
+                <% if(user) { %>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">
+                            Welcome, <%= username %></a>
+                    </li>
+                </ul>
+                <% } %>
+            </div>
+
+        </nav>
+    </header>
+
+    
+    <% if (errorMessages.length > 0) { %>
+        <% errorMessages.forEach(error => { %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+              </div>
+        <% }); %>
+    <% } %>
+    
+    <% if (successMessages.length > 0) { %>
+        <% successMessages.forEach(success => { %>
+            <div class="alert alert-success" role="alert">
+                <%= success %>
+              </div>
+        <% }); %>
+    <% } %>
